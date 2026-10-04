@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>رسالة من القلب ❤️</title>
+<title>رسالة من القلب</title>
 
 <style>
 
@@ -14,105 +14,182 @@
     box-sizing:border-box;
 }
 
-body{
-    min-height:100vh;
-    overflow:hidden;
-    font-family:"Segoe UI",Tahoma,Arial,sans-serif;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(255,80,130,.18), transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(170,50,100,.20), transparent 30%),
-        linear-gradient(135deg,#09070b,#1c0b14,#0b070c);
-    color:white;
+html,body{
+    width:100%;
+    height:100%;
 }
 
-/* الخلفية */
+body{
+    overflow:hidden;
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+    color:#fff;
+    background:#08050a;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
 
 .background{
     position:fixed;
     inset:0;
     overflow:hidden;
-    z-index:-1;
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(126,20,63,.35),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255,80,130,.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(121,30,88,.18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #050307,
+            #130710,
+            #210b18,
+            #08050a
+        );
+
+    z-index:-10;
+}
+
+.background::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.65) 1px,transparent 1px),
+        radial-gradient(circle,rgba(255,180,210,.4) 1px,transparent 1px);
+    background-size:120px 120px,190px 190px;
+    background-position:20px 30px,80px 100px;
+    opacity:.22;
+    animation:stars 18s linear infinite;
+}
+
+@keyframes stars{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-120px);
+    }
 }
 
 .glow{
     position:absolute;
-    width:350px;
-    height:350px;
+    width:420px;
+    height:420px;
     border-radius:50%;
-    filter:blur(100px);
+    filter:blur(120px);
     opacity:.25;
 }
 
-.glow.one{
+.glow1{
+    background:#e63272;
+    top:-220px;
+    left:-180px;
+}
+
+.glow2{
+    background:#8e1d62;
+    bottom:-240px;
+    right:-180px;
+}
+
+.glow3{
     background:#ff477e;
-    top:-120px;
-    left:-100px;
+    top:40%;
+    left:45%;
+    opacity:.10;
 }
 
-.glow.two{
-    background:#a92867;
-    bottom:-150px;
-    right:-100px;
-}
-
-/* القلوب */
+/* =========================
+   FLOATING HEARTS
+========================= */
 
 .heart{
     position:absolute;
-    bottom:-50px;
-    font-size:20px;
-    opacity:.5;
-    animation:floatHeart linear infinite;
+    bottom:-60px;
+    color:#ff8aaa;
+    opacity:0;
+    pointer-events:none;
+    animation:floatHeart linear forwards;
+    filter:drop-shadow(0 0 8px rgba(255,80,130,.5));
 }
 
 @keyframes floatHeart{
-    from{
-        transform:translateY(0) rotate(0deg);
+
+    0%{
+        transform:translateY(0) scale(.7) rotate(0);
         opacity:0;
     }
 
-    20%{
-        opacity:.6;
+    15%{
+        opacity:.65;
     }
 
-    to{
-        transform:translateY(-110vh) rotate(360deg);
+    80%{
+        opacity:.35;
+    }
+
+    100%{
+        transform:
+            translateY(-115vh)
+            scale(1.25)
+            rotate(25deg);
         opacity:0;
     }
 }
 
-/* الصفحات */
+/* =========================
+   PAGE
+========================= */
 
 .page{
     position:absolute;
     inset:0;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
     padding:20px;
-    transition:1s ease;
+
+    opacity:1;
+    transform:scale(1);
+
+    transition:
+        opacity 1.1s ease,
+        transform 1.1s ease;
 }
 
 .hidden{
     opacity:0;
     pointer-events:none;
-    transform:scale(.95);
+    transform:scale(.94);
 }
 
+/* =========================
+   GLASS CARD
+========================= */
+
 .card{
-    width:min(850px,94vw);
-    min-height:500px;
-    padding:45px 30px;
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:35px;
+    position:relative;
 
-    background:rgba(255,255,255,.055);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
+    width:min(900px,94vw);
+    min-height:570px;
 
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.5),
-        inset 0 0 30px rgba(255,255,255,.025);
+    padding:
+        clamp(30px,6vw,65px)
+        clamp(20px,5vw,60px);
 
     display:flex;
     flex-direction:column;
@@ -120,318 +197,564 @@ body{
     align-items:center;
 
     text-align:center;
-}
 
-/* الصفحة الأولى */
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.025)
+        );
 
-.small-title{
-    color:#ff9db8;
-    font-size:15px;
-    letter-spacing:3px;
-    margin-bottom:20px;
-}
+    border:
+        1px solid rgba(255,255,255,.13);
 
-.big-heart{
-    font-size:75px;
-    animation:heartbeat 1.5s infinite;
-    filter:drop-shadow(0 0 20px rgba(255,80,130,.5));
-}
+    border-radius:40px;
 
-@keyframes heartbeat{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.12)}
-}
-
-h1{
-    margin-top:15px;
-    font-size:clamp(30px,6vw,55px);
-    font-weight:600;
-}
-
-.subtitle{
-    margin-top:15px;
-    color:#d8c5cc;
-    line-height:2;
-    max-width:600px;
-    font-size:17px;
-}
-
-.btn{
-    margin-top:35px;
-    padding:15px 35px;
-    border:0;
-    border-radius:50px;
-    color:white;
-    background:linear-gradient(135deg,#e83f70,#a9285c);
-    font-size:17px;
-    cursor:pointer;
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
 
     box-shadow:
-        0 10px 30px rgba(232,63,112,.3);
+        0 30px 100px rgba(0,0,0,.6),
+        inset 0 1px 0 rgba(255,255,255,.08);
 
-    transition:.3s;
-}
-
-.btn:hover{
-    transform:translateY(-3px) scale(1.03);
-    box-shadow:0 15px 40px rgba(232,63,112,.45);
-}
-
-/* صفحة الأغنية */
-
-.song-label{
-    color:#ff8fac;
-    font-size:14px;
-    letter-spacing:2px;
-    margin-bottom:25px;
-}
-
-.lyrics-box{
-    width:100%;
-    min-height:250px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
-
-.lyric{
-    font-size:clamp(22px,4vw,38px);
-    line-height:1.9;
-    font-weight:500;
-
-    text-shadow:
-        0 0 20px rgba(255,80,130,.25);
-
-    opacity:0;
-    transform:translateY(15px);
-    transition:.8s ease;
-}
-
-.lyric.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-.progress{
-    width:min(550px,90%);
-    height:3px;
-    background:rgba(255,255,255,.12);
-    border-radius:10px;
-    margin-top:20px;
     overflow:hidden;
 }
 
-.progress-bar{
-    width:0%;
-    height:100%;
-    background:#ff5f8c;
-    box-shadow:0 0 15px #ff5f8c;
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,100,150,.15),
+            transparent 40%
+        );
+
+    pointer-events:none;
 }
 
-/* المرحلة الثانية */
+/* =========================
+   INTRO
+========================= */
 
-.final-title{
-    font-size:clamp(28px,5vw,48px);
+.eyebrow{
+    color:#ff9ab5;
+    font-size:13px;
+    letter-spacing:4px;
+    margin-bottom:28px;
+}
+
+.main-heart{
+    font-size:78px;
+
+    filter:
+        drop-shadow(0 0 15px rgba(255,70,120,.55))
+        drop-shadow(0 0 40px rgba(255,70,120,.25));
+
+    animation:heartbeat 1.8s ease-in-out infinite;
+}
+
+@keyframes heartbeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.12);
+    }
+}
+
+.intro-title{
+    margin-top:22px;
+
+    font-size:
+        clamp(32px,7vw,58px);
+
+    font-weight:500;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ffc3d4,
+            #fff
+        );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.intro-text{
+    max-width:650px;
+
+    margin-top:20px;
+
+    color:#d9c6ce;
+
+    font-size:
+        clamp(15px,2.5vw,19px);
+
+    line-height:2.1;
+}
+
+.start-btn{
+    margin-top:38px;
+
+    padding:16px 38px;
+
+    border:0;
+    border-radius:100px;
+
+    color:#fff;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ed4779,
+            #9c285b
+        );
+
+    box-shadow:
+        0 12px 35px rgba(237,71,121,.3);
+
+    transition:.35s;
+}
+
+.start-btn:hover{
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    box-shadow:
+        0 18px 50px rgba(237,71,121,.45);
+}
+
+/* =========================
+   SONG PAGE
+========================= */
+
+.part{
+    color:#ff91ae;
+
+    font-size:12px;
+
+    letter-spacing:4px;
+
     margin-bottom:25px;
 }
 
+.music-disc{
+    width:78px;
+    height:78px;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(255,255,255,.2);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:30px;
+
+    background:
+        radial-gradient(
+            circle,
+            #3b1427 0 22%,
+            #160b13 23% 100%
+        );
+
+    box-shadow:
+        0 0 35px rgba(255,75,125,.22);
+
+    animation:disc 4s linear infinite;
+}
+
+@keyframes disc{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.lyric-area{
+    width:100%;
+
+    min-height:245px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:30px 10px;
+}
+
+.lyric{
+    max-width:760px;
+
+    font-size:
+        clamp(23px,4.3vw,40px);
+
+    line-height:1.9;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 25px rgba(255,100,150,.18);
+
+    opacity:0;
+
+    transform:
+        translateY(18px)
+        scale(.98);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
+
+.lyric.visible{
+    opacity:1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.progress-wrap{
+    width:min(600px,85%);
+
+    height:3px;
+
+    background:rgba(255,255,255,.09);
+
+    border-radius:10px;
+
+    overflow:hidden;
+}
+
+.progress{
+    width:0;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #9f2c5b,
+            #ff6e98
+        );
+
+    box-shadow:
+        0 0 15px #ff6e98;
+
+    transition:width .2s linear;
+}
+
+.next-btn{
+    opacity:0;
+    pointer-events:none;
+
+    margin-top:35px;
+
+    padding:14px 30px;
+
+    border-radius:100px;
+
+    border:
+        1px solid rgba(255,150,180,.25);
+
+    background:
+        rgba(255,255,255,.07);
+
+    color:#fff;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.5s;
+}
+
+.next-btn.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.next-btn:hover{
+    background:
+        rgba(255,80,130,.18);
+
+    transform:translateY(-3px);
+}
+
+/* =========================
+   SECOND PART
+========================= */
+
+.final-heading{
+    font-size:
+        clamp(28px,6vw,50px);
+
+    font-weight:500;
+
+    margin-bottom:28px;
+
+    color:#fff;
+}
+
 .final-text{
-    width:min(680px,95%);
-    min-height:230px;
-    font-size:clamp(20px,3.5vw,29px);
-    line-height:2.1;
-    color:#f7e8ed;
+    width:min(760px,95%);
+
+    min-height:245px;
+
+    font-size:
+        clamp(19px,3.4vw,28px);
+
+    line-height:2.15;
+
+    color:#f4e3e9;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    align-content:center;
+
+    gap:0 7px;
 }
 
 .word{
     display:inline-block;
+
     opacity:0;
-    transform:translateY(8px);
-    transition:.5s ease;
-    margin-left:7px;
+
+    transform:
+        translateY(12px);
+
+    filter:blur(4px);
+
+    transition:
+        opacity .75s ease,
+        transform .75s ease,
+        filter .75s ease;
 }
 
 .word.show{
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+        translateY(0);
+
+    filter:blur(0);
 }
 
 .signature{
     margin-top:25px;
-    color:#ff9db8;
-    font-size:18px;
+
+    font-size:17px;
+
+    color:#ff9bb6;
+
     opacity:0;
-    transition:2s;
+
+    transform:translateY(10px);
+
+    transition:1.5s ease;
 }
 
 .signature.show{
     opacity:1;
+    transform:translateY(0);
 }
 
-/* زر الأغنية الثانية */
-
-.next-button{
-    display:none;
-}
-
-.show-next{
-    display:block;
-    animation:appear 1s ease;
-}
-
-@keyframes appear{
-    from{
-        opacity:0;
-        transform:translateY(15px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* موبايل */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
 
     .card{
-        min-height:520px;
-        padding:30px 18px;
-        border-radius:25px;
+        min-height:560px;
+
+        border-radius:30px;
     }
 
-    .big-heart{
-        font-size:60px;
+    .main-heart{
+        font-size:65px;
     }
 
-    .subtitle{
-        font-size:15px;
+    .music-disc{
+        width:65px;
+        height:65px;
+        font-size:25px;
+    }
+
+    .lyric-area{
+        min-height:250px;
     }
 
     .lyric{
         font-size:23px;
+        line-height:2;
     }
 
     .final-text{
-        font-size:20px;
+        font-size:19px;
+        line-height:2.2;
     }
 }
 
 </style>
 </head>
 
+
 <body>
 
 <div class="background">
 
-    <div class="glow one"></div>
-    <div class="glow two"></div>
-
-    <div class="heart" style="left:5%;animation-duration:9s;">❤</div>
-    <div class="heart" style="left:15%;animation-duration:12s;animation-delay:2s;">♡</div>
-    <div class="heart" style="left:28%;animation-duration:10s;animation-delay:4s;">❤</div>
-    <div class="heart" style="left:43%;animation-duration:13s;animation-delay:1s;">♡</div>
-    <div class="heart" style="left:58%;animation-duration:11s;animation-delay:3s;">❤</div>
-    <div class="heart" style="left:72%;animation-duration:14s;animation-delay:2s;">♡</div>
-    <div class="heart" style="left:88%;animation-duration:10s;animation-delay:5s;">❤</div>
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
 
 </div>
 
 
-<!-- البداية -->
+<!-- =========================
+     INTRO
+========================= -->
 
 <section id="intro" class="page">
 
-<div class="card">
+    <div class="card">
 
-    <div class="small-title">
-        رسالة صغيرة... بس من قلبي
+        <div class="eyebrow">
+            حاجة صغيرة... بس معمولة من القلب
+        </div>
+
+        <div class="main-heart">
+            ❤️
+        </div>
+
+        <h1 class="intro-title">
+            قبل ما تبدأي...
+        </h1>
+
+        <p class="intro-text">
+            مش كل حاجة بنعرف نقولها في وقتها،
+            ومش كل اعتذار بيقدر يوصل الإحساس اللي جوانا.
+            <br>
+            عشان كده حبيت أسيبلك الرسالة دي...
+        </p>
+
+        <button
+            class="start-btn"
+            onclick="startFirst()">
+
+            ابدأي من هنا ❤️
+
+        </button>
+
     </div>
-
-    <div class="big-heart">
-        ❤️
-    </div>
-
-    <h1>
-        قبل ما تسمعي...
-    </h1>
-
-    <p class="subtitle">
-        مفيش كلام هيقدر يصلّح كل حاجة حصلت،
-        بس كان لازم أعمل حاجة تليق بالكلام اللي جوايا.
-        <br>
-        خدي وقتك... واسمعي للآخر.
-    </p>
-
-    <button class="btn" onclick="startFirstSong()">
-        ابدأي الرسالة ❤️
-    </button>
-
-</div>
 
 </section>
 
 
-<!-- الأغنية الأولى -->
+<!-- =========================
+     FIRST SONG
+========================= -->
 
 <section id="firstPage" class="page hidden">
 
-<div class="card">
+    <div class="card">
 
-    <div class="song-label">
-        الجزء الأول
+        <div class="part">
+            الرسالة الأولى
+        </div>
+
+        <div class="music-disc">
+            ♪
+        </div>
+
+        <div class="lyric-area">
+
+            <div
+                id="lyric"
+                class="lyric">
+            </div>
+
+        </div>
+
+        <div class="progress-wrap">
+
+            <div
+                id="progress"
+                class="progress">
+            </div>
+
+        </div>
+
+        <button
+            id="nextBtn"
+            class="next-btn"
+            onclick="goSecond()">
+
+            كمّلي... لسه فاضل حاجة ❤️
+
+        </button>
+
     </div>
-
-    <div class="lyrics-box">
-        <div id="lyric" class="lyric"></div>
-    </div>
-
-    <div class="progress">
-        <div id="progressBar" class="progress-bar"></div>
-    </div>
-
-    <button
-        id="nextButton"
-        class="btn next-button"
-        onclick="startSecondPart()">
-
-        لسه في حاجة عايز أقولها... ❤️
-
-    </button>
-
-</div>
 
 </section>
 
 
-<!-- الأغنية الثانية -->
+<!-- =========================
+     SECOND SONG
+========================= -->
 
 <section id="secondPage" class="page hidden">
 
-<div class="card">
+    <div class="card">
 
-    <div class="song-label">
-        الجزء الأخير
+        <div class="part">
+            آخر حاجة كان لازم أقولها
+        </div>
+
+        <div class="final-heading">
+            من غير تبرير...
+        </div>
+
+        <div
+            id="finalText"
+            class="final-text">
+        </div>
+
+        <div
+            id="signature"
+            class="signature">
+
+            مش طالب غير إنك تعرفي إني آسف بجد. ❤️
+
+        </div>
+
     </div>
-
-    <div class="final-title">
-        كان لازم أقولك ده...
-    </div>
-
-    <div id="finalText" class="final-text"></div>
-
-    <div id="signature" class="signature">
-        يمكن مش أقدر أغيّر اللي حصل...
-        بس أقدر أكون أحسن من بعده. ❤️
-    </div>
-
-</div>
 
 </section>
 
 
-<!-- ملفات الصوت -->
+<!-- =========================
+     AUDIO
+========================= -->
 
 <audio
     id="song1"
@@ -449,25 +772,43 @@ h1{
 <script>
 
 /* =========================
-   الأغنية الأولى
+   ELEMENTS
 ========================= */
 
-const song1 = document.getElementById("song1");
-const song2 = document.getElementById("song2");
+const intro =
+    document.getElementById("intro");
 
-const intro = document.getElementById("intro");
-const firstPage = document.getElementById("firstPage");
-const secondPage = document.getElementById("secondPage");
+const firstPage =
+    document.getElementById("firstPage");
 
-const lyricElement = document.getElementById("lyric");
-const progressBar = document.getElementById("progressBar");
-const nextButton = document.getElementById("nextButton");
+const secondPage =
+    document.getElementById("secondPage");
+
+const song1 =
+    document.getElementById("song1");
+
+const song2 =
+    document.getElementById("song2");
+
+const lyric =
+    document.getElementById("lyric");
+
+const progress =
+    document.getElementById("progress");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const finalText =
+    document.getElementById("finalText");
+
+const signature =
+    document.getElementById("signature");
 
 
-/*
-   الكلام الذي أرسلته أنت.
-   سيظهر سطرًا بعد سطر بطريقة سينمائية.
-*/
+/* =========================
+   FIRST LYRICS
+========================= */
 
 const lyrics = [
 
@@ -530,13 +871,14 @@ const lyrics = [
 ];
 
 
-let currentLyric = 0;
-let lyricTimer;
+let lastLine = -1;
 
 
-/* بداية الموقع */
+/* =========================
+   START FIRST
+========================= */
 
-function startFirstSong(){
+function startFirst(){
 
     intro.classList.add("hidden");
 
@@ -544,123 +886,105 @@ function startFirstSong(){
 
         firstPage.classList.remove("hidden");
 
-        song1.play().catch(()=>{
+        song1.currentTime = 0;
 
-            alert("اضغط مرة ثانية لتشغيل الصوت ❤️");
+        song1.play();
 
-        });
-
-        startLyrics();
-
-    },700);
+    },900);
 
 }
 
 
-/* إظهار الكلام تدريجيًا */
+/* =========================
+   SYNC FIRST SONG
+========================= */
 
-function startLyrics(){
+song1.addEventListener("loadedmetadata",()=>{
 
-    currentLyric = 0;
+    /*
+      الكلام بيتوزع على مدة الأغنية
+      بالتساوي بدل السرعة.
+    */
 
-    showNextLyric();
+});
 
-}
-
-
-function showNextLyric(){
-
-    if(currentLyric >= lyrics.length){
-
-        return;
-    }
-
-    lyricElement.classList.remove("show");
-
-    setTimeout(()=>{
-
-        lyricElement.innerHTML = lyrics[currentLyric];
-
-        lyricElement.classList.add("show");
-
-        currentLyric++;
-
-    },400);
-
-}
-
-
-/*
-   بدل ما الكلام يختفي بسرعة،
-   نوزعه على مدة الأغنية.
-*/
 
 song1.addEventListener("timeupdate",()=>{
 
     if(!song1.duration) return;
 
     const percent =
-        (song1.currentTime / song1.duration) * 100;
+        (song1.currentTime /
+        song1.duration) * 100;
 
-    progressBar.style.width = percent + "%";
-
-
-    const index = Math.floor(
-        (song1.currentTime / song1.duration) *
-        lyrics.length
-    );
+    progress.style.width =
+        percent + "%";
 
 
-    if(index !== currentLyric - 1 &&
-       index < lyrics.length){
+    let index =
+        Math.floor(
+            (song1.currentTime /
+            song1.duration) *
+            lyrics.length
+        );
 
-        currentLyric = index;
 
-        lyricElement.classList.remove("show");
+    if(index >= lyrics.length){
+        index = lyrics.length - 1;
+    }
+
+
+    if(index !== lastLine){
+
+        lastLine = index;
+
+        lyric.classList.remove("visible");
 
         setTimeout(()=>{
 
-            lyricElement.innerHTML =
+            lyric.textContent =
                 lyrics[index];
 
-            lyricElement.classList.add("show");
+            lyric.classList.add("visible");
 
-        },300);
+        },500);
 
     }
 
 });
 
 
-/* لما الأغنية الأولى تخلص */
+/* =========================
+   FIRST SONG END
+========================= */
 
 song1.addEventListener("ended",()=>{
 
-    lyricElement.classList.remove("show");
+    lyric.classList.remove("visible");
 
     setTimeout(()=>{
 
-        lyricElement.innerHTML =
-            "لو لسه مكملة... فاضل آخر حاجة.";
+        lyric.textContent =
+            "ولو لسه مكملة... فاضل آخر حاجة.";
 
-        lyricElement.classList.add("show");
+        lyric.classList.add("visible");
 
         setTimeout(()=>{
 
-            nextButton.classList.add("show-next");
+            nextBtn.classList.add("show");
 
-        },1500);
+        },1800);
 
-    },600);
+    },700);
 
 });
 
 
 /* =========================
-   الأغنية الثانية
+   SECOND PART
 ========================= */
 
-function startSecondPart(){
+function goSecond(){
 
     song1.pause();
 
@@ -672,95 +996,105 @@ function startSecondPart(){
 
         song2.currentTime = 0;
 
-        song2.play().catch(()=>{
+        song2.play();
 
-            alert("اضغط على الصفحة لتشغيل الصوت ❤️");
+        startFinal();
 
-        });
-
-        startFinalMessage();
-
-    },800);
+    },1000);
 
 }
 
 
-/* الكلام الأصلي للمرحلة الثانية */
+/* =========================
+   SECOND MESSAGE
+========================= */
 
 const finalMessage = `
 
-أنا عارف إن كلمة آسف مش هترجع وقت
-ولا هتمسح حاجة حصلت.
+أنا عارف إن كلمة آسف لوحدها مش كفاية.
 
-وعارف إن ممكن الكلام ده كله
-ميكونش كفاية.
+وعارف إن في حاجات حصلت
+مينفعش تتصلح بكلمتين.
 
-بس أنا مش داخل أبرر لنفسي...
-ولا أقول إن اللي حصل كان غصب عني.
+وأنا مش داخل أبرر لنفسي.
 
 أنا غلطت.
 
-وغلطتي إني زعلت شخص
-كان كل اللي محتاجه مني
-إني أحافظ عليه.
+وزعلتك.
 
-يمكن وقتها مكنتش شايف
-قد إيه بعض التصرفات بتوجع.
+ويمكن أكتر حاجة مضايقاني
+إني عرفت قيمة حاجات كتير
+بعد ما وجعتك.
 
-بس دلوقتي شايف.
+أنا مش طالب منك تنسي اللي حصل.
 
-وشايف إن الاعتذار الحقيقي
-مش إن الواحد يقول آسف وبس...
+ولا طالب منك تسامحي بسرعة.
 
-الاعتذار الحقيقي
-إنه يفهم غلطه
-ويحاول ميبقاش نفس الشخص
-اللي عمل الغلط ده تاني.
+ولا حتى طالب منك تاخدي قرار
+عشان أنا عايزه.
 
-أنا مش هطلب منك تنسي.
-
-ومش هضغط عليكِ تسامحي.
-
-ومش هقولك إنك لازم ترجعي.
-
-أنا بس كان لازم أوصلك حاجة واحدة...
-
+أنا بس كان لازم أقولك
 إني ندمان بجد.
 
-ولو الزمن رجع بيا
-هختار ألف مرة
-إني أحافظ على اللي كان بينا
-بدل ما أخسره بإيدي.
+مش ندمان عشان أخاف أخسرك وبس...
 
-يمكن الرسالة دي متغيرش حاجة...
+ندمان عشان فهمت
+إن الشخص اللي قدامي
+كان يستاهل مني أحافظ عليه
+مش أكون سبب في زعله.
 
-بس أتمنى على الأقل
-إنك تعرفي إن الكلام ده
-مش معمول عشان أكسبك بأي طريقة.
+ولو في حاجة أقدر أعملها
+فهي إني أتعلم من الغلط ده.
 
-ده معمول عشان أقول
-الحاجة اللي كان لازم أقولها من بدري:
+وأكون أهدى.
+
+وأفهم.
+
+وأحافظ على الناس
+اللي وجودهم في حياتي
+مش حاجة عادية.
+
+أنا آسف على كل كلمة وجعتك.
+
+وعلى كل موقف خليكي تحسي
+إنك مش مهمة.
+
+لأن الحقيقة إنك كنتِ مهمة...
+
+وأنا اللي قصرت.
+
+مش هضغط عليكِ.
+
+ومش هقولك لازم ترجعي.
+
+أنا بس أتمنى
+إن اعتذاري يوصل زي ما هو...
+
+من غير تبرير.
+
+من غير كبرياء.
+
+ومن غير أي حاجة غير الصدق.
 
 أنا آسف.
-
-بجد آسف.
 
 وحقك عليا. ❤️
 
 `;
 
 
-/* تحويل الكلام لكلمات */
+/* =========================
+   WORD ANIMATION
+========================= */
 
-function startFinalMessage(){
+function startFinal(){
 
     const words =
-        finalMessage.trim().split(/\s+/);
+        finalMessage
+        .trim()
+        .split(/\s+/);
 
-    const container =
-        document.getElementById("finalText");
-
-    container.innerHTML = "";
+    finalText.innerHTML = "";
 
     words.forEach((word,index)=>{
 
@@ -771,66 +1105,82 @@ function startFinalMessage(){
 
         span.textContent = word;
 
-        container.appendChild(span);
+        finalText.appendChild(span);
+
+
+        /*
+          السرعة الجديدة:
+          450ms بين كل كلمة.
+          وعند نهاية الجمل بنعمل وقفة أطول.
+        */
+
+        let delay =
+            index * 430;
+
+
+        const cleanWord =
+            word.replace(/[.,!?،؛:]/g,"");
+
+
+        if(
+            word.includes(".") ||
+            word.includes("؟") ||
+            word.includes("!") ||
+            word.includes("...") ||
+            word.includes("،")
+        ){
+
+            delay += 900;
+
+        }
+
 
         setTimeout(()=>{
 
             span.classList.add("show");
 
-        },index * 180);
+        },delay);
 
     });
 
 
+    const totalTime =
+        words.length * 430 + 3500;
+
+
     setTimeout(()=>{
 
-        document
-        .getElementById("signature")
-        .classList.add("show");
+        signature.classList.add("show");
 
-    },words.length * 180 + 1000);
+    },totalTime);
 
 }
 
 
 /* =========================
-   منع الأغنية الثانية
-   من الاستمرار بعد النهاية
+   FLOATING HEARTS
 ========================= */
 
-song2.addEventListener("ended",()=>{
-
-    const signature =
-        document.getElementById("signature");
-
-    signature.innerHTML =
-        "ومهما كان قرارك... أنا هحترمه. ❤️";
-
-});
-
-
-/* =========================
-   تأثيرات بسيطة للقلوب
-========================= */
-
-setInterval(()=>{
+function createHeart(){
 
     const heart =
         document.createElement("div");
 
     heart.className = "heart";
 
-    heart.innerHTML =
-        Math.random() > .5 ? "❤" : "♡";
+    heart.textContent =
+        Math.random() > .5
+        ? "❤"
+        : "♡";
 
     heart.style.left =
-        Math.random()*100 + "%";
-
-    heart.style.animationDuration =
-        (8 + Math.random()*7) + "s";
+        Math.random() * 100 + "%";
 
     heart.style.fontSize =
-        (12 + Math.random()*20) + "px";
+        (12 + Math.random()*18) + "px";
+
+    heart.style.animationDuration =
+        (8 + Math.random()*8) + "s";
 
     document
         .querySelector(".background")
@@ -841,11 +1191,29 @@ setInterval(()=>{
 
         heart.remove();
 
-    },15000);
+    },17000);
 
-},1200);
+}
+
+
+setInterval(
+    createHeart,
+    900
+);
+
+
+/* أول كام قلب */
+
+for(let i=0;i<8;i++){
+
+    setTimeout(
+        createHeart,
+        i*500
+    );
+
+}
 
 </script>
 
 </body>
-</html> 
+</html>
