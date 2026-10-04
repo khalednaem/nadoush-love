@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>رسالة من القلب ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,80,130,.18), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(170,50,100,.20), transparent 30%),
+        linear-gradient(135deg,#09070b,#1c0b14,#0b070c);
+    color:white;
+}
+
+/* الخلفية */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.glow{
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.25;
+}
+
+.glow.one{
+    background:#ff477e;
+    top:-120px;
+    left:-100px;
+}
+
+.glow.two{
+    background:#a92867;
+    bottom:-150px;
+    right:-100px;
+}
+
+/* القلوب */
+
+.heart{
+    position:absolute;
+    bottom:-50px;
+    font-size:20px;
+    opacity:.5;
+    animation:floatHeart linear infinite;
+}
+
+@keyframes floatHeart{
+    from{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.6;
+    }
+
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* الصفحات */
+
+.page{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    transition:1s ease;
+}
+
+.hidden{
+    opacity:0;
+    pointer-events:none;
+    transform:scale(.95);
+}
+
+.card{
+    width:min(850px,94vw);
+    min-height:500px;
+    padding:45px 30px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:35px;
+
+    background:rgba(255,255,255,.055);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.5),
+        inset 0 0 30px rgba(255,255,255,.025);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+}
+
+/* الصفحة الأولى */
+
+.small-title{
+    color:#ff9db8;
+    font-size:15px;
+    letter-spacing:3px;
+    margin-bottom:20px;
+}
+
+.big-heart{
+    font-size:75px;
+    animation:heartbeat 1.5s infinite;
+    filter:drop-shadow(0 0 20px rgba(255,80,130,.5));
+}
+
+@keyframes heartbeat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.12)}
+}
+
+h1{
+    margin-top:15px;
+    font-size:clamp(30px,6vw,55px);
+    font-weight:600;
+}
+
+.subtitle{
+    margin-top:15px;
+    color:#d8c5cc;
+    line-height:2;
+    max-width:600px;
+    font-size:17px;
+}
+
+.btn{
+    margin-top:35px;
+    padding:15px 35px;
+    border:0;
+    border-radius:50px;
+    color:white;
+    background:linear-gradient(135deg,#e83f70,#a9285c);
+    font-size:17px;
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 30px rgba(232,63,112,.3);
+
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 15px 40px rgba(232,63,112,.45);
+}
+
+/* صفحة الأغنية */
+
+.song-label{
+    color:#ff8fac;
+    font-size:14px;
+    letter-spacing:2px;
+    margin-bottom:25px;
+}
+
+.lyrics-box{
+    width:100%;
+    min-height:250px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.lyric{
+    font-size:clamp(22px,4vw,38px);
+    line-height:1.9;
+    font-weight:500;
+
+    text-shadow:
+        0 0 20px rgba(255,80,130,.25);
+
+    opacity:0;
+    transform:translateY(15px);
+    transition:.8s ease;
+}
+
+.lyric.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.progress{
+    width:min(550px,90%);
+    height:3px;
+    background:rgba(255,255,255,.12);
+    border-radius:10px;
+    margin-top:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:0%;
+    height:100%;
+    background:#ff5f8c;
+    box-shadow:0 0 15px #ff5f8c;
+}
+
+/* المرحلة الثانية */
+
+.final-title{
+    font-size:clamp(28px,5vw,48px);
+    margin-bottom:25px;
+}
+
+.final-text{
+    width:min(680px,95%);
+    min-height:230px;
+    font-size:clamp(20px,3.5vw,29px);
+    line-height:2.1;
+    color:#f7e8ed;
+}
+
+.word{
+    display:inline-block;
+    opacity:0;
+    transform:translateY(8px);
+    transition:.5s ease;
+    margin-left:7px;
+}
+
+.word.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.signature{
+    margin-top:25px;
+    color:#ff9db8;
+    font-size:18px;
+    opacity:0;
+    transition:2s;
+}
+
+.signature.show{
+    opacity:1;
+}
+
+/* زر الأغنية الثانية */
+
+.next-button{
+    display:none;
+}
+
+.show-next{
+    display:block;
+    animation:appear 1s ease;
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* موبايل */
+
+@media(max-width:600px){
+
+    .card{
+        min-height:520px;
+        padding:30px 18px;
+        border-radius:25px;
+    }
+
+    .big-heart{
+        font-size:60px;
+    }
+
+    .subtitle{
+        font-size:15px;
+    }
+
+    .lyric{
+        font-size:23px;
+    }
+
+    .final-text{
+        font-size:20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background">
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <div class="heart" style="left:5%;animation-duration:9s;">❤</div>
+    <div class="heart" style="left:15%;animation-duration:12s;animation-delay:2s;">♡</div>
+    <div class="heart" style="left:28%;animation-duration:10s;animation-delay:4s;">❤</div>
+    <div class="heart" style="left:43%;animation-duration:13s;animation-delay:1s;">♡</div>
+    <div class="heart" style="left:58%;animation-duration:11s;animation-delay:3s;">❤</div>
+    <div class="heart" style="left:72%;animation-duration:14s;animation-delay:2s;">♡</div>
+    <div class="heart" style="left:88%;animation-duration:10s;animation-delay:5s;">❤</div>
+
+</div>
+
+
+<!-- البداية -->
+
+<section id="intro" class="page">
+
+<div class="card">
+
+    <div class="small-title">
+        رسالة صغيرة... بس من قلبي
+    </div>
+
+    <div class="big-heart">
+        ❤️
+    </div>
+
+    <h1>
+        قبل ما تسمعي...
+    </h1>
+
+    <p class="subtitle">
+        مفيش كلام هيقدر يصلّح كل حاجة حصلت،
+        بس كان لازم أعمل حاجة تليق بالكلام اللي جوايا.
+        <br>
+        خدي وقتك... واسمعي للآخر.
+    </p>
+
+    <button class="btn" onclick="startFirstSong()">
+        ابدأي الرسالة ❤️
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- الأغنية الأولى -->
+
+<section id="firstPage" class="page hidden">
+
+<div class="card">
+
+    <div class="song-label">
+        الجزء الأول
+    </div>
+
+    <div class="lyrics-box">
+        <div id="lyric" class="lyric"></div>
+    </div>
+
+    <div class="progress">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <button
+        id="nextButton"
+        class="btn next-button"
+        onclick="startSecondPart()">
+
+        لسه في حاجة عايز أقولها... ❤️
+
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- الأغنية الثانية -->
+
+<section id="secondPage" class="page hidden">
+
+<div class="card">
+
+    <div class="song-label">
+        الجزء الأخير
+    </div>
+
+    <div class="final-title">
+        كان لازم أقولك ده...
+    </div>
+
+    <div id="finalText" class="final-text"></div>
+
+    <div id="signature" class="signature">
+        يمكن مش أقدر أغيّر اللي حصل...
+        بس أقدر أكون أحسن من بعده. ❤️
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ملفات الصوت -->
+
+<audio
+    id="song1"
+    preload="metadata"
+    src="WhatsApp Audio 2026-10-05 at 12.27.47 AM.mpeg">
+</audio>
+
+<audio
+    id="song2"
+    preload="metadata"
+    src="WhatsApp Audio 2026-10-05 at 12.50.33 AM.mpeg">
+</audio>
+
+
+<script>
+
+/* =========================
+   الأغنية الأولى
+========================= */
+
+const song1 = document.getElementById("song1");
+const song2 = document.getElementById("song2");
+
+const intro = document.getElementById("intro");
+const firstPage = document.getElementById("firstPage");
+const secondPage = document.getElementById("secondPage");
+
+const lyricElement = document.getElementById("lyric");
+const progressBar = document.getElementById("progressBar");
+const nextButton = document.getElementById("nextButton");
+
+
+/*
+   الكلام الذي أرسلته أنت.
+   سيظهر سطرًا بعد سطر بطريقة سينمائية.
+*/
+
+const lyrics = [
+
+"حقك ع عيني ينور عيني❤",
+
+"يرفيقه مشواري الدايمه💘",
+
+"حقك...! 🤍",
+
+"ينجومي الي بشوفها🥹",
+
+"يمراكبي اللي بحسك عايمه",
+
+"بتاسفلك ونتي لوحدك الي انا ف الدنيا اتاسفتله🤍🌍",
+
+"حصاله ايامي الفاضيه مفيهاش غيرك🫂❤",
+
+"انتي حبيبتي وامي وبنتي وميراثي❤❤❤🌍",
+
+"وتاجي وراس مالي🫂",
+
+"حصني من الدنيا الي انا.",
+
+"ماعرفش مترتب ايه او رسمالي...!",
+
+"الفرحه الي بتخرج من الضنك🥹🤍🤍",
+
+"والثروه الي متتحطش ف البنك😘♥♥",
+
+"والحلوه الي مفيش ف جمالها ولا مصريات ♥",
+
+"ولا خواجاتيي😍😍",
+
+"الفرحه الي تقابل متعوس🥹♥♥",
+
+"والضحكه الي يقولها نياتي",
+
+"انا جاي..",
+
+"بتاسف يحياتي♥",
+
+"وموافق لو هتعاقبيني!",
+
+"انما انا لا همشي ولا اكمل",
+
+"غير لما تقزلي سامحتيني🤍",
+
+"ارجعي عشان اليوم بوخ😔",
+
+"من يوم مزعلتي وسبتيني🫂♥♥💘",
+
+"سامحيني😔",
+
+"واشف والله🤍🤍",
+
+"والله انا اسف!!!",
+
+"سامحيني♥🫂"
+
+];
+
+
+let currentLyric = 0;
+let lyricTimer;
+
+
+/* بداية الموقع */
+
+function startFirstSong(){
+
+    intro.classList.add("hidden");
+
+    setTimeout(()=>{
+
+        firstPage.classList.remove("hidden");
+
+        song1.play().catch(()=>{
+
+            alert("اضغط مرة ثانية لتشغيل الصوت ❤️");
+
+        });
+
+        startLyrics();
+
+    },700);
+
+}
+
+
+/* إظهار الكلام تدريجيًا */
+
+function startLyrics(){
+
+    currentLyric = 0;
+
+    showNextLyric();
+
+}
+
+
+function showNextLyric(){
+
+    if(currentLyric >= lyrics.length){
+
+        return;
+    }
+
+    lyricElement.classList.remove("show");
+
+    setTimeout(()=>{
+
+        lyricElement.innerHTML = lyrics[currentLyric];
+
+        lyricElement.classList.add("show");
+
+        currentLyric++;
+
+    },400);
+
+}
+
+
+/*
+   بدل ما الكلام يختفي بسرعة،
+   نوزعه على مدة الأغنية.
+*/
+
+song1.addEventListener("timeupdate",()=>{
+
+    if(!song1.duration) return;
+
+    const percent =
+        (song1.currentTime / song1.duration) * 100;
+
+    progressBar.style.width = percent + "%";
+
+
+    const index = Math.floor(
+        (song1.currentTime / song1.duration) *
+        lyrics.length
+    );
+
+
+    if(index !== currentLyric - 1 &&
+       index < lyrics.length){
+
+        currentLyric = index;
+
+        lyricElement.classList.remove("show");
+
+        setTimeout(()=>{
+
+            lyricElement.innerHTML =
+                lyrics[index];
+
+            lyricElement.classList.add("show");
+
+        },300);
+
+    }
+
+});
+
+
+/* لما الأغنية الأولى تخلص */
+
+song1.addEventListener("ended",()=>{
+
+    lyricElement.classList.remove("show");
+
+    setTimeout(()=>{
+
+        lyricElement.innerHTML =
+            "لو لسه مكملة... فاضل آخر حاجة.";
+
+        lyricElement.classList.add("show");
+
+        setTimeout(()=>{
+
+            nextButton.classList.add("show-next");
+
+        },1500);
+
+    },600);
+
+});
+
+
+/* =========================
+   الأغنية الثانية
+========================= */
+
+function startSecondPart(){
+
+    song1.pause();
+
+    firstPage.classList.add("hidden");
+
+    setTimeout(()=>{
+
+        secondPage.classList.remove("hidden");
+
+        song2.currentTime = 0;
+
+        song2.play().catch(()=>{
+
+            alert("اضغط على الصفحة لتشغيل الصوت ❤️");
+
+        });
+
+        startFinalMessage();
+
+    },800);
+
+}
+
+
+/* الكلام الأصلي للمرحلة الثانية */
+
+const finalMessage = `
+
+أنا عارف إن كلمة آسف مش هترجع وقت
+ولا هتمسح حاجة حصلت.
+
+وعارف إن ممكن الكلام ده كله
+ميكونش كفاية.
+
+بس أنا مش داخل أبرر لنفسي...
+ولا أقول إن اللي حصل كان غصب عني.
+
+أنا غلطت.
+
+وغلطتي إني زعلت شخص
+كان كل اللي محتاجه مني
+إني أحافظ عليه.
+
+يمكن وقتها مكنتش شايف
+قد إيه بعض التصرفات بتوجع.
+
+بس دلوقتي شايف.
+
+وشايف إن الاعتذار الحقيقي
+مش إن الواحد يقول آسف وبس...
+
+الاعتذار الحقيقي
+إنه يفهم غلطه
+ويحاول ميبقاش نفس الشخص
+اللي عمل الغلط ده تاني.
+
+أنا مش هطلب منك تنسي.
+
+ومش هضغط عليكِ تسامحي.
+
+ومش هقولك إنك لازم ترجعي.
+
+أنا بس كان لازم أوصلك حاجة واحدة...
+
+إني ندمان بجد.
+
+ولو الزمن رجع بيا
+هختار ألف مرة
+إني أحافظ على اللي كان بينا
+بدل ما أخسره بإيدي.
+
+يمكن الرسالة دي متغيرش حاجة...
+
+بس أتمنى على الأقل
+إنك تعرفي إن الكلام ده
+مش معمول عشان أكسبك بأي طريقة.
+
+ده معمول عشان أقول
+الحاجة اللي كان لازم أقولها من بدري:
+
+أنا آسف.
+
+بجد آسف.
+
+وحقك عليا. ❤️
+
+`;
+
+
+/* تحويل الكلام لكلمات */
+
+function startFinalMessage(){
+
+    const words =
+        finalMessage.trim().split(/\s+/);
+
+    const container =
+        document.getElementById("finalText");
+
+    container.innerHTML = "";
+
+    words.forEach((word,index)=>{
+
+        const span =
+            document.createElement("span");
+
+        span.className = "word";
+
+        span.textContent = word;
+
+        container.appendChild(span);
+
+        setTimeout(()=>{
+
+            span.classList.add("show");
+
+        },index * 180);
+
+    });
+
+
+    setTimeout(()=>{
+
+        document
+        .getElementById("signature")
+        .classList.add("show");
+
+    },words.length * 180 + 1000);
+
+}
+
+
+/* =========================
+   منع الأغنية الثانية
+   من الاستمرار بعد النهاية
+========================= */
+
+song2.addEventListener("ended",()=>{
+
+    const signature =
+        document.getElementById("signature");
+
+    signature.innerHTML =
+        "ومهما كان قرارك... أنا هحترمه. ❤️";
+
+});
+
+
+/* =========================
+   تأثيرات بسيطة للقلوب
+========================= */
+
+setInterval(()=>{
+
+    const heart =
+        document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML =
+        Math.random() > .5 ? "❤" : "♡";
+
+    heart.style.left =
+        Math.random()*100 + "%";
+
+    heart.style.animationDuration =
+        (8 + Math.random()*7) + "s";
+
+    heart.style.fontSize =
+        (12 + Math.random()*20) + "px";
+
+    document
+        .querySelector(".background")
+        .appendChild(heart);
+
+
+    setTimeout(()=>{
+
+        heart.remove();
+
+    },15000);
+
+},1200);
+
+</script>
+
+</body>
+</html> 
